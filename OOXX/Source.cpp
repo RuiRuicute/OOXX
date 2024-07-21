@@ -1,4 +1,5 @@
 #include <iostream>
+#include"bot.h"
 using namespace std;
 
 void show();
@@ -39,7 +40,7 @@ void show() {
 }
 
 void startAsk() {
-	cout << "請選擇位置" << endl;
+	cout << "Please select a location" << endl;
 }
 
 void ask() {
@@ -86,13 +87,13 @@ void ask() {
 		block[row][column] = who;
 	}
 	else {
-		cout << "此格子已經被選定，請重新選擇";
+		cout << "This grid has been selected, please select again.";
 		ask();
 	}
 }
 
 void start() {
-	cout << "請問誰間開始O或X";
+	cout << "Please choose who goes first?  (O or X)";
 	cin >> whoFirst;
 	if (whoFirst == 'x' || whoFirst == 'X') {
 		who = 'X';
@@ -115,23 +116,23 @@ void determination() {
 	for (int i = 0; i < 3; i++) {
 		int j = 0;
 		if (block[i][j] == block[i][j++] && block[i][j++] == block[i][j + 2]&& block[i][j]!=' ') {
-			cout << block[i][j] << "獲勝";
+			cout << block[i][j] << "win";
 			win = true;
 		}
 	}
 	for (int i = 0; i < 3; i++) {
 		int j = 0;
 		if (block[j][i] == block[j+1][i] && block[j+1][i] == block[j+2][i] && block[j][i] != ' ') {
-			cout << block[i][j] << "獲勝";
+			cout << block[i][j] << "win";
 			win = true;
 		}
 	}
 	if (block[0][0] == block[1][1] && block[1][1] == block[2][2] && block[0][0] != ' ') {
-		cout << block[0][0] << "獲勝";
+		cout << block[0][0] << "win";
 		win = true;
 	}
-	if (block[0][2] == block[1][1] && block[2][0] && block[0][2] != ' ') {
-		cout << block[0][2] << "獲勝";
+	if (block[0][2] == block[1][1] && block[2][0] == block[1][1] && block[0][2] != ' ') {
+		cout << block[0][2] << "win";
 		win = true;
 	}
 }
