@@ -17,15 +17,25 @@ bool win = false;
 char block[3][3] = {{' ',' ',' '},
 			        {' ',' ',' '}, 
 			        {' ',' ',' '}};
+int turn=0;
 
 int main() {
 	start();
+	cout << "1|2|3" <<endl;
+	cout << "4|5|6" << endl;
+	cout << "7|8|9" << endl;
 	while (win!=true) {
+		
 		startAsk();
 		ask();
 		whoTurn();
 		show();
 		determination();
+		turn++;
+		if (turn == 9) {
+			cout << "Tie";
+			break;
+		}
 	}
 }
 
@@ -45,7 +55,7 @@ void startAsk() {
 
 void ask() {
 	cin >> answer;
-	switch (answer) {        //將程式改為row及column
+	switch (answer) {    
 		case 1:
 			row = 0;
 			column = 0;
@@ -101,6 +111,9 @@ void start() {
 	else if (whoFirst == 'O' || whoFirst == 'o') {
 		who = 'O';
 	}
+	else {
+		start();
+	}
 }
 
 void whoTurn() {
@@ -114,25 +127,23 @@ void whoTurn() {
 
 void determination() {
 	for (int i = 0; i < 3; i++) {
-		int j = 0;
-		if (block[i][j] == block[i][j++] && block[i][j++] == block[i][j + 2]&& block[i][j]!=' ') {
-			cout << block[i][j] << "win";
+		if (block[i][0] == block[i][1] && block[i][1] == block[i][2]&& block[i][0]!=' ') {
+			cout << block[i][0] << "  win";
 			win = true;
 		}
 	}
 	for (int i = 0; i < 3; i++) {
-		int j = 0;
-		if (block[j][i] == block[j+1][i] && block[j+1][i] == block[j+2][i] && block[j][i] != ' ') {
-			cout << block[i][j] << "win";
+		if (block[0][i] == block[1][i] && block[1][i] == block[2][i] && block[0][i] != ' ') {
+			cout << block[0][i] << "  win";
 			win = true;
 		}
 	}
 	if (block[0][0] == block[1][1] && block[1][1] == block[2][2] && block[0][0] != ' ') {
-		cout << block[0][0] << "win";
+		cout << block[0][0] << "  win";
 		win = true;
 	}
 	if (block[0][2] == block[1][1] && block[2][0] == block[1][1] && block[0][2] != ' ') {
-		cout << block[0][2] << "win";
+		cout << block[0][2] << "  win";
 		win = true;
 	}
 }
